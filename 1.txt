@@ -6,5 +6,7 @@ git branch -M main
 git remote add origin https://github.com/AtharvaKolekar/test23.git
 git push -u origin main
 
+git pull origin main
+
 git status  -> added to staged or not
 git remote get-url origin -> check url
