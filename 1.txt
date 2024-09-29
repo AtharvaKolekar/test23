@@ -12,4 +12,4 @@ git status  -> added to staged or not
 git remote get-url origin -> check url
 
 
-CHanged by Munir.
+Changed by Munir.
