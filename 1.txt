@@ -10,3 +10,6 @@ git pull origin main
 
 git status  -> added to staged or not
 git remote get-url origin -> check url
+
+
+Changed by Munir.
