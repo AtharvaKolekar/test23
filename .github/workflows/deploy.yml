@@ -20,6 +20,7 @@ jobs:
     - name: FTP Deploy
       run: |
         lftp -f "
+        set ssl:verify-certificate no
         open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
         lcd out
         mirror --reverse --delete --verbose ./ /test
