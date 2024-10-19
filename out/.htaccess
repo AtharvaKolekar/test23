@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# If the requested URL does not contain a file extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.[^/]+$
+
+# Redirect to the corresponding .html file
+RewriteRule ^(.*)$ $1.html [L]
+
+# If the requested URL is .html, remove the .html extension in the browser
+RewriteCond %{THE_REQUEST} \s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Custom error pages
+
+# Custom 404 error page
+ErrorDocument 404 /404.html
+
+# Custom 403 error page
+ErrorDocument 403 /403.html
+
+# Custom 500 error page
+ErrorDocument 500 /500.html
+
