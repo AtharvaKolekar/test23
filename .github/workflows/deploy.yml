@@ -1,0 +1,32 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main  # You can change this to the branch you want to track.
+
+jobs:
+  ftp-deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install lftp
+      run: sudo apt-get install -y lftp
+
+    - name: FTP Deploy
+      run: |
+        lftp -f "
+        open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+        lcd out
+        mirror --reverse --delete --verbose ./ /test
+        bye
+        "
+      env:
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        FTP_PORT: ${{ secrets.FTP_PORT }}
